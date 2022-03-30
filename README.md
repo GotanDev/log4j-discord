@@ -18,20 +18,21 @@ Include this project directly from Gotan Maven repository in your `pom.xml`
 </dependency>
 ```
 
-
-#### Gotan maven repository 
+#### Github Maven repository settings 
 
 ```XML
 <repositories>
-	<repository>
-		<id>gotan</id>
-		<name>Gotan multi-proxies and OpenSource Contributions</name>
-		<url>https://repository.dev.gotan.io/repository/maven-public/</url>
-		<releases><enabled>true</enabled></releases>
-		<snapshots><enabled>true</enabled></snapshots>
-	</repository>
+  <repository>
+    <id>github</id>
+    <url>https://maven.pkg.github.com/GotanDev/log4j-discord</url>
+    <snapshots>
+      <enabled>true</enabled>
+    </snapshots>
+  </repository>
 </repositories>
 ```
+
+[Detailled instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry)
 
 ### Webhook URL Configuration 
 

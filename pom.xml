@@ -49,23 +49,12 @@
         <system>GitHub</system>
         <url>https://github.com/GotanDev/log4j-discord/issues</url>
     </issueManagement>
-    <distributionManagement>
-        <repository>
-            <id>io.gotan.repository</id>
-            <name>Gotan Libraries</name>
-            <url>https://repository.dev.gotan.io/repository/gotan.os/</url>
-        </repository>
-    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>8</maven.compiler.release>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-
-        <discord.webhook.url>
-            https://discord.com/api/webhooks/958695877600481330/GPKnog0O1GrgmB9a_WPdnpnIHpJcM3YLnR_MUqL4UMXqCWL2zlvZPVg37WZHk6ufyGtZ
-        </discord.webhook.url>
 
     </properties>
 
@@ -93,4 +82,31 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>github</id>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <name>GitHub Gotan Apache Maven Packages</name>
+                    <url>https://maven.pkg.github.com/GotanDev/log4j-discord</url>
+                </repository>
+            </distributionManagement>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>gotan</id>
+            <distributionManagement>
+                <repository>
+                    <id>io.gotan.repository</id>
+                    <name>Gotan Libraries</name>
+                    <url>https://repository.dev.gotan.io/repository/gotan.os/</url>
+                </repository>
+
+            </distributionManagement>
+
+        </profile>
+    </profiles>
 </project>
