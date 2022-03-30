@@ -4,17 +4,9 @@ This is a simple webhook-based Discord appender for Log4j 2.x.
 Can also be used to send manually simple message to Discord. 
 
 
-## Simple message example
 
-```java
-// With global configuration
-new DiscordNotifier().sendMessage("Send simple message");
-// With custom oneshot URL
-new DiscordNotifier("https://discord.com/api/webhooks/XXXXXXX").sendMessage("Send simple message");
-```
 
 ## Get Started
-
 
 ### Maven
 Include this project directly from Gotan Maven repository in your `pom.xml`
@@ -49,7 +41,17 @@ You can set [discord webhook URL](https://discord.com/developers/docs/resources/
 * `discord.webhook` in `application.properties` file
 * directly with custom URL set in constructor / factory
 
-## Log4j Appender  
+## Usage
+
+### Simple message example
+
+```java
+// With global configuration
+new DiscordNotifier().sendMessage("Send simple message");
+// With custom oneshot URL
+new DiscordNotifier("https://discord.com/api/webhooks/XXXXXXX").sendMessage("Send simple message");
+```
+### Log4j Appender  
 To use this appender in your code, first get a webhook URL from Discord.
 Then, add this to your project's dependencies:
 
@@ -79,7 +81,7 @@ Read more about markers [here](https://logging.apache.org/log4j/2.x/manual/marke
 
 
 
-### Configuration
+#### Configuration
 
 The following are all the configuration attributes or elements supported:
 
