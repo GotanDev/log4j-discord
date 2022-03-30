@@ -4,16 +4,6 @@ This is a simple webhook-based Discord appender for Log4j 2.x.
 To use this appender in your code, first get a webhook URL from Discord.
 Then, add this to your project's dependencies:
 
-```
-allprojects {
-   repositories {
-        maven { url 'https://jitpack.io' }
-   }
-}
-dependencies {
-        implementation 'com.github.modeverv:log4j-discord:0.0.1'
-}
-```
 
 To use this plugin, add the following to your `log4j2.xml` configuration (or translate to your preferred format):
 

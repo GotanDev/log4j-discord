@@ -1,0 +1,96 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.gotan.os</groupId>
+    <artifactId>log4j-discord</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <description>Simple webhook-based Discord appender for Log4j 2.x.</description>
+
+    <developers>
+        <developer>
+            <name>Modeverv</name>
+            <email>modeverv@gmail.com</email>
+            <url>https://github.com/modeverv</url>
+        </developer>
+        <developer>
+            <id>damiencuvillier</id>
+            <name>Damien Cuvillier</name>
+            <email>damien@gotan.io</email>
+            <url>https://damiencuvillier.com</url>
+            <roles>
+                <role>simple contributor, packager</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>yanngasner</id>
+            <name>Yann Gasner</name>
+            <email>yann.gasner@kpitaine.com</email>
+            <url>https://kpitaine.com</url>
+            <roles>
+                <role>maintainer,developper</role>
+            </roles>
+        </developer>
+    </developers>
+
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git@github.com:GotanDev/log4j-discord.git</connection>
+        <url>scm:git@github.com:GotanDev/log4j-discord.git</url>
+        <developerConnection>scm:git:git@github.com:GotanDev/log4j-discord.git</developerConnection>
+    </scm>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/GotanDev/log4j-discord/issues</url>
+    </issueManagement>
+    <distributionManagement>
+        <repository>
+            <id>io.gotan.repository</id>
+            <name>Gotan Libraries</name>
+            <url>https://repository.dev.gotan.io/repository/gotan.os/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>8</maven.compiler.release>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+
+        <discord.webhook.url>
+            https://discord.com/api/webhooks/958695877600481330/GPKnog0O1GrgmB9a_WPdnpnIHpJcM3YLnR_MUqL4UMXqCWL2zlvZPVg37WZHk6ufyGtZ
+        </discord.webhook.url>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.14.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.14.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.13.2</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

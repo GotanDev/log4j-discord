@@ -1,7 +1,8 @@
-package asia.daemon.lovesaemi.discordappender;
+package io.gotan.os.log4j.discord;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -14,7 +15,10 @@ public class DiscordManager extends AbstractManager {
     private static final SlackManagerFactory FACTORY = new SlackManagerFactory();
 
     private final URL webhook;
+
+
     private final JsonFactory factory = new JsonFactory();
+
 
     private DiscordManager(final LoggerContext loggerContext, final String name, final URL webhook) {
         super(loggerContext, name);
@@ -42,21 +46,38 @@ public class DiscordManager extends AbstractManager {
     }
 
     public static DiscordManager getManager(final String name, final LoggerContext context, final URL webhook) {
-        GoogleChatConfiguration config = new GoogleChatConfiguration();
+
+        ChatConfiguration config = new ChatConfiguration();
         config.context = context;
-        config.webhook = webhook;
+        if (webhook == null) {
+            try {
+                // Load webhook URL from external property
+                config.webhook = new URL(DiscordConfiguration.getWebhookUrl());
+            } catch (MalformedURLException e) {
+                throw new DiscordConfiguration.InvalidDiscordConfiguration("No webhook configuration set");
+            }
+        } else {
+            config.webhook = webhook;
+        }
         return getManager(name, FACTORY, config);
     }
 
-    private static class GoogleChatConfiguration {
+    /** Get Discord Manager with default webhook URL.<br />
+     * URL provided either by DISCORD_WEBHOOK env var, or discord.webhook application.properties file. */
+    public static DiscordManager getManager(final String name, final LoggerContext context) throws DiscordConfiguration.InvalidDiscordConfiguration {
+        return getManager(name, FACTORY, null);
+    }
+
+
+    private static class ChatConfiguration {
         private LoggerContext context;
         private URL webhook;
     }
 
-    private static class SlackManagerFactory implements ManagerFactory<DiscordManager, GoogleChatConfiguration> {
+    private static class SlackManagerFactory implements ManagerFactory<DiscordManager, ChatConfiguration> {
 
         @Override
-        public DiscordManager createManager(final String name, final GoogleChatConfiguration data) {
+        public DiscordManager createManager(final String name, final ChatConfiguration data) {
             return new DiscordManager(data.context, name, data.webhook);
         }
     }

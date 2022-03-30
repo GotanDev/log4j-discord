@@ -1,4 +1,4 @@
-package asia.daemon.lovesaemi.discordappender;
+package io.gotan.os.log4j.discord;
 
 import java.io.Serializable;
 import java.net.URL;
@@ -41,7 +41,6 @@ public class DiscordAppender extends AbstractAppender {
             implements org.apache.logging.log4j.core.util.Builder<DiscordAppender> {
 
         @PluginBuilderAttribute
-        @Required
         private URL webhook;
 
         public B setWebhook(final URL webhook) {
@@ -55,6 +54,7 @@ public class DiscordAppender extends AbstractAppender {
             if (!(layout instanceof StringLayout)) {
                 throw new IllegalArgumentException("Layout must be a StringLayout");
             }
+
             DiscordManager manager = DiscordManager.getManager(getName(), getConfiguration().getLoggerContext(), webhook);
             return new DiscordAppender(getName(), getFilter(), (StringLayout) layout, isIgnoreExceptions(), manager);
         }

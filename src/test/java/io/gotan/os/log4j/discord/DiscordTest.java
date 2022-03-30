@@ -1,4 +1,4 @@
-package asia.daemon.lovesaemi.discordappender;
+package io.gotan.os.log4j.discord;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -17,16 +17,19 @@ import org.junit.Test;
 
 @SuppressWarnings("ALL")
 public class DiscordTest {
-    public static final String DISCORD_WEBHOOK = "DISCORD_WEBHOOK";
 
     @Before
     public void setup() {
         ConfigurationBuilder<BuiltConfiguration> builder = ConfigurationBuilderFactory.newConfigurationBuilder();
-        builder.setPackages("asia.daemon.lovesaemi");
+        builder.setPackages("io.gotan.os");
         //String webhookUrl = System.getProperty(GOOGLECHAT_WEBHOOK, System.getenv(GOOGLECHAT_WEBHOOK));
-        String webhookUrl = System.getenv(DISCORD_WEBHOOK);
-        System.out.println(webhookUrl);
-        assertNotNull(DISCORD_WEBHOOK + " MUST NOT be null", webhookUrl);
+        String webhookUrl = null;
+        try {
+            webhookUrl = DiscordConfiguration.getWebhookUrl();
+        } catch (DiscordConfiguration.InvalidDiscordConfiguration e) {
+            System.err.println("Missing configuration for webhook url");
+        }
+        assertNotNull(DiscordConfiguration.ENV_VAR + " MUST NOT be null or " + DiscordConfiguration.PROPERTY_NAME + " property in application.properties file MUST NOT BE NULL", webhookUrl);
         AppenderComponentBuilder appenderComponentBuilder = builder.newAppender("discord", "Discord");
         appenderComponentBuilder.addAttribute("webhook", webhookUrl);
         appenderComponentBuilder.add(builder.newFilter(
