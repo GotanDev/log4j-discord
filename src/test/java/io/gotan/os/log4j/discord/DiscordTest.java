@@ -15,6 +15,9 @@ import org.apache.logging.log4j.core.config.builder.impl.BuiltConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 @SuppressWarnings("ALL")
 public class DiscordTest {
 
@@ -50,6 +53,16 @@ public class DiscordTest {
         Marker DISCORD = MarkerManager.getMarker("DISCORD");
         LogManager.getLogger(getClass()).warn(DISCORD, "Test warning message");
         Thread.sleep(2000);
+    }
+
+    @Test
+    public void sendSimpleMessage(){
+        new DiscordNotifier().sendMessage("Send simple message");
+    }
+
+    @Test(expected = DiscordConfiguration.InvalidDiscordConfiguration.class)
+    public void badURL() throws MalformedURLException {
+        new DiscordNotifier(new URL("http://void")).sendMessage("test");
     }
     @Test
     public void sendInfoLong() throws InterruptedException {
