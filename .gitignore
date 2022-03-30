@@ -1,0 +1,8 @@
+build
+.idea
+*~ 
+.*
+target
+.gradle
+.eclipse
+.project
